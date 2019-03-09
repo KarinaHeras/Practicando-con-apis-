@@ -31,3 +31,7 @@ const url ='https://swapi.co/api/planets/1/'
 const planetRepresentation = document.querySelector('#planet')
 
 starPaint(url, planetRepresentation, 'Planet')
+
+
+
+

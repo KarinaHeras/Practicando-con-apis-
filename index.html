@@ -9,6 +9,52 @@
 </head>
 <body>
     <ul id="planet"></ul>
-   <script src="./js/app.js"></script>       
+  
+   <script>
+      var index = 0;
+var max = quotes.length - 1;
+var delay = .02;
+
+function random(min, max){
+	return (Math.random() * (max - min)) + min;
+}
+
+function cycleQuotes(arr, i, sel){
+	var el = $(sel);
+	var message = arr[i];
+	el.html(message);
+	var Citizen = new CitizenText(el);
+	var time = split.chars.length * delay;
+	
+	$(Citizen.chars).each(function(i){
+		TweenMax.from($(this), time, {
+			opacity: 0,
+			x: 0,
+			y: random(-200, 200),
+			z: random(500, 1000),
+			// scale: .1,
+			delay: i * delay,
+			yoyo: true,
+			repeat: -1,
+			repeatDelay: time * 4,
+			ease: Power1.easeOut
+		});
+	});
+	
+	index = index == max ?  0 : (index + 1);
+
+	setTimeout(function(){
+		
+		cycleQuotes(quotes, index, ".Citizen");
+	}, ((time * 4) + (time * 4)) * 1000);
+	
+}
+
+$(window).load(function(){
+	cycleQuotes(quotes, index, ".Citizen");
+});
+   </script>
+    <script src="./js/app.js"></script>    
+   
 </body>
 </html>
